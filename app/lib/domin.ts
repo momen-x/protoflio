@@ -1,1 +1,2 @@
-export const domin = "http://localhost:3000";
+export const domin = "https://protoflio-opal.vercel.app";
+// "http://localhost:3000";
