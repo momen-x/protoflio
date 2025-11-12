@@ -5,10 +5,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import github from "@/public/assets/github.png";
 import { projects } from "@/app/data/projects";
-import ReusableTitle from "@/app/_Components/ReusableTitle";
-import "./work.css"
-
-
+import "./work.css";
+import ReusableTitle from "../../_Components/ReusableTitle";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,6 +36,7 @@ const ProjectCard = ({
   source_code_link: string;
   project_link: string;
 }) => {
+  const { t } = useLanguage();
   return (
     <motion.div
       initial="hidden"
@@ -54,7 +54,7 @@ const ProjectCard = ({
         <div className="relative w-full h-48 rounded-xl overflow-hidden group">
           <img
             src={image}
-            alt={`${name} project image`}
+            alt={`${t(name)} project image`}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
           />
 
@@ -64,7 +64,7 @@ const ProjectCard = ({
               onClick={() => window.open(project_link, "_blank")}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 cursor-pointer"
             >
-              Live Demo
+              {t("work.livedemo")}
             </button>
             <button
               onClick={() => window.open(source_code_link, "_blank")}
@@ -82,9 +82,9 @@ const ProjectCard = ({
         </div>
 
         <div className="mt-5">
-          <h3 className="text-white font-bold text-xl">{name}</h3>
+          <h3 className="text-white font-bold text-xl">{t(name)}</h3>
           <p className="mt-2 text-gray-300 text-sm leading-relaxed">
-            {description}
+            {t(description)}
           </p>
         </div>
 
@@ -114,6 +114,7 @@ const ProjectCard = ({
 };
 
 const WorkPage = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-16 px-4 md:py-24 md:px-6 lg:px-8 max-w-6xl mx-auto">
       <motion.div
@@ -124,19 +125,12 @@ const WorkPage = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         {/* Header Section */}
-    <ReusableTitle title="My works" description="projects"/>
+        <ReusableTitle title={t("work.title")} description={t("work.description")} />
 
         {/* Description */}
         <motion.div className="w-full flex justify-center">
-          <motion.p
-          
-            className="text-gray-300 text-lg text-center max-w-3xl leading-relaxed bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30"
-          >
-            Following projects showcases my skills and experience through
-            real-world examples of my work. Each project is briefly described
-            with links to code repositories and live demos. It reflects my
-            ability to solve complex problems, work with different technologies,
-            and manage projects effectively.
+          <motion.p className="text-gray-300 text-lg text-center max-w-3xl leading-relaxed bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30">
+            {t("work.content")}
           </motion.p>
         </motion.div>
 

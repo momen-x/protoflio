@@ -1,22 +1,21 @@
+// app/data/Services.ts
 import { MdWeb } from "react-icons/md";
 import { BsDatabaseAdd } from "react-icons/bs";
-
 import { IconType } from "react-icons";
 
-
 interface IServices {
-  title: string;
-  Icon: IconType; // or React.ElementType
+  title: string; 
+  Icon: IconType;
 }
 
 const services: IServices[] = [
   {
     Icon: MdWeb,
-    title: "Front end Web developer",
+    title: "about.serviceTitle1", 
   },
   {
     Icon: BsDatabaseAdd,
-    title: "Basic for back end developer",
+    title: "about.serviceTitle2",
   },
 ];
 

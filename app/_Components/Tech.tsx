@@ -1,6 +1,6 @@
 
+import { technologies } from "@/app/data/technologies";
 import BallCanvas from "./BallCanvas";
-import { technologies } from "../data/technologies";
 
 const Tech = () => {
   return (

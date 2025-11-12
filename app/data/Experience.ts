@@ -1,34 +1,30 @@
+// app/data/Experience.ts
 interface IExperience {
-  title: string;
+  title: string; // This will be translation keys
   path: string;
   iconBg: string;
-  date: string;
-  points: string[];
+  date: string; // This will be translation keys
+  points: string[]; // These will be translation keys
 }
 
 const myExperience: IExperience[] = [
   {
-    date: "May 2025",
-    title: "Front End Developer",
-    path: "/images/react.png", 
+    date: "experience.frontDate",
+    title: "experience.frontTitle",
+    path: "/images/react.png",
     iconBg: "#000",
-    points: [
-    //   "Developed responsive web applications using Next.js",
-      "Built interactive UIs with React.js and TypeScript",
-      "Styled components with Tailwind CSS for modern designs",
-      "Implemented state management and API integrations",
-    ],
+    points: ["experience.front1", "experience.front2", "experience.front3"],
   },
   {
-    date: "Jan 2025",
-    title: "Back End Developer",
-    path: "/images/Next.jpg", 
+    date: "experience.BackDate",
+    title: "experience.BackTitle",
+    path: "/images/Next.jpg",
     iconBg: "#000",
     points: [
-      "Built RESTful APIs with Node.js and Express.js",
-      "Designed and implemented MongoDB database schemas",
-      "Created authentication and authorization systems",
-      "Optimized server performance and response times",
+      "experience.back1",
+      "experience.back2",
+      "experience.back3",
+      "experience.back4",
     ],
   },
 ];

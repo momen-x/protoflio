@@ -1,8 +1,9 @@
-"use client"
+"use client";
+import testimonials from "@/app/data/testimilions";
 /* eslint-disable @next/next/no-img-element */
 import ReusableTitle from "./ReusableTitle";
-import testimonials from "../data/testimilions";
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 const FeedbackCard = ({
   testimonial,
@@ -19,6 +20,8 @@ const FeedbackCard = ({
   image: string;
   index: number;
 }) => {
+  const { t } = useLanguage(); // Add this hook
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -43,7 +46,7 @@ const FeedbackCard = ({
       {/* Testimonial Text */}
       <blockquote className="flex-1">
         <p className="text-gray-300 text-lg leading-relaxed mb-6 line-clamp-5">
-          {testimonial}
+          {t(testimonial)} {/* Translate testimonial */}
         </p>
       </blockquote>
 
@@ -53,11 +56,11 @@ const FeedbackCard = ({
           {image ? (
             <img
               src={image}
-              alt={name}
+              alt={t(name)} 
               className="w-full h-full rounded-full object-cover"
             />
           ) : (
-            name
+            t(name)
               .split(" ")
               .map((n) => n[0])
               .join("")
@@ -66,9 +69,9 @@ const FeedbackCard = ({
         </div>
 
         <div className="flex-1 min-w-0">
-          <h4 className="text-white font-semibold text-lg truncate">{name}</h4>
-          <p className="text-gray-400 text-sm truncate">{designation}</p>
-          <p className="text-blue-400 text-sm truncate">{company}</p>
+          <h4 className="text-white font-semibold text-lg truncate">{t(name)}</h4> {/* Translate name */}
+          <p className="text-gray-400 text-sm truncate">{t(designation)}</p> {/* Translate designation */}
+          <p className="text-blue-400 text-sm truncate">{t(company)}</p> {/* Translate company */}
         </div>
       </div>
     </motion.div>
@@ -76,41 +79,15 @@ const FeedbackCard = ({
 };
 
 const Feedback = () => {
-  // // Sample data in case testimonials is empty
-  // const sampleTestimonials = [
-  //   {
-  //     testimonial:
-  //       "Working with this developer was an absolute pleasure. Their attention to detail and problem-solving skills are exceptional. They delivered high-quality code that exceeded our expectations.",
-  //     name: "Sarah Johnson",
-  //     designation: "Product Manager",
-  //     company: "TechCorp Inc.",
-  //     image: "",
-  //   },
-  //   {
-  //     testimonial:
-  //       "The projects delivered were not only visually stunning but also highly functional and performant. Great communication throughout the entire development process.",
-  //     name: "Michael Chen",
-  //     designation: "CTO",
-  //     company: "StartUp Ventures",
-  //     image: "",
-  //   },
-  //   {
-  //     testimonial:
-  //       "Outstanding frontend development skills! They transformed our complex requirements into a seamless user experience. Will definitely work with them again.",
-  //     name: "Emily Rodriguez",
-  //     designation: "UX Lead",
-  //     company: "Design Studio",
-  //     image: "",
-  //   },
-  // ];
-
-  // const testimonialsData =
-  //   testimonials && testimonials.length > 0 ? testimonials : sampleTestimonials;
+  const { t } = useLanguage();
 
   return (
     <section className="py-16 px-4 md:py-24 md:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Header section */}
-      <ReusableTitle title="What People Say" description="Testimonials" />
+      <ReusableTitle 
+        title={t("feedback.peopleSay")} 
+        description={t("feedback.testimonials")} 
+      />
 
       {/* Note */}
       <motion.div
@@ -121,7 +98,7 @@ const Feedback = () => {
         className="text-center mb-12"
       >
         <p className="text-gray-400 text-sm bg-gray-900/30 backdrop-blur-sm rounded-lg py-2 px-4 inline-block border border-yellow-500/20">
-          💡 Note: Using fake data for demonstration purposes
+          {t("feedback.note")} {/* Translate note */}
         </p>
       </motion.div>
 
@@ -152,25 +129,25 @@ const Feedback = () => {
           <div className="text-2xl md:text-3xl font-bold text-white mb-2">
             10+
           </div>
-          <div className="text-gray-400 text-sm">Projects Completed</div>
+          <div className="text-gray-400 text-sm">{t("feedback.projectsCompleted")}</div> {/* Translate */}
         </div>
         <div className="text-center p-6 bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-700/50">
           <div className="text-2xl md:text-3xl font-bold text-white mb-2">
             7+
           </div>
-          <div className="text-gray-400 text-sm">Happy Clients</div>
+          <div className="text-gray-400 text-sm">{t("feedback.happyClients")}</div> {/* Translate */}
         </div>
         <div className="text-center p-6 bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-700/50">
           <div className="text-2xl md:text-3xl font-bold text-white mb-2">
             2+
           </div>
-          <div className="text-gray-400 text-sm">Years Experience</div>
+          <div className="text-gray-400 text-sm">{t("feedback.yearsExperience")}</div> {/* Translate */}
         </div>
         <div className="text-center p-6 bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-700/50">
           <div className="text-2xl md:text-3xl font-bold text-white mb-2">
             80%
           </div>
-          <div className="text-gray-400 text-sm">Client Satisfaction</div>
+          <div className="text-gray-400 text-sm">{t("feedback.clientSatisfaction")}</div> {/* Translate */}
         </div>
       </motion.div>
     </section>

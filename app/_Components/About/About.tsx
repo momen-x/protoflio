@@ -5,6 +5,7 @@ import services from "@/app/data/Services";
 import Tilt from "react-parallax-tilt";
 import { IconType } from "react-icons";
 import ReusableTitle from "../ReusableTitle";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const ServiceCard = ({
   index,
@@ -15,6 +16,7 @@ const ServiceCard = ({
   title: string;
   icon: IconType;
 }) => {
+  const { t } = useLanguage();
   return (
     <motion.div
       className="group bg-linear-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 h-full flex flex-col items-center text-center shadow-xl hover:shadow-2xl hover:shadow-blue-500/10"
@@ -31,7 +33,7 @@ const ServiceCard = ({
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
+      <h3 className="text-lg font-semibold text-white mb-2">{t(title)}</h3>
     </motion.div>
   );
 };
@@ -47,6 +49,7 @@ export const containerVariants = {
   },
 };
 const About: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-16 px-4 md:py-24 md:px-6 lg:px-8 max-w-6xl mx-auto">
       <motion.div
@@ -57,24 +60,15 @@ const About: React.FC = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         {/* Header Section */}
-        <ReusableTitle description="Overview" title="Introduction" />
+        <ReusableTitle
+          description={t("about.overview")}
+          title={t("about.intro")}
+        />
 
         {/* Description Section */}
         <motion.div className="max-w-3xl mx-auto text-center">
           <motion.p className="text-lg md:text-xl text-gray-300 leading-relaxed md:leading-loose bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30">
-            I&apos;m a front-end developer passionate about web development. My
-            journey began with learning Java at university, which was later
-            interrupted by difficult circumstances (the war in Gaza). However, I
-            returned with renewed enthusiasm. I started by reviewing the
-            fundamentals of programming in languages ​​like C, C++, PHP, and
-            Python, but I quickly discovered my true passion in HTML, CSS, and
-            JavaScript for user interface development. I learned frameworks like
-            Bootstrap and Tailwind CSS and built several projects as practical
-            applications. After that, I delved deeper into React JS to build
-            more professional websites, using external libraries. Currently,
-            I&apos;m building complete websites ( full stack ) using Nextjs.
-            I&apos;m always striving to improve my skills and stay up-to-date
-            with the latest technologies in the field.
+            {t("about.story")}
           </motion.p>
         </motion.div>
 
@@ -82,10 +76,10 @@ const About: React.FC = () => {
         <motion.div>
           <div className="text-center mb-12">
             <motion.h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              What I Do
+              {t("about.whatdo")}
             </motion.h3>
             <motion.p className="text-gray-200 max-w-2xl mx-auto">
-              Here are some of the services I specialize in
+              {t("about.services")}
             </motion.p>
           </div>
 

@@ -8,14 +8,16 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { motion } from "framer-motion";
 import { containerVariants } from "./About/About";
-import myExperience from "../data/Experience";
 import ReusableTitle from "./ReusableTitle";
+import myExperience from "@/app/data/Experience";
+import { useLanguage } from "../context/LanguageContext";
 
 const ExperienceCart = ({
   experience,
 }: {
   experience: (typeof myExperience)[0];
 }) => {
+  const { t } = useLanguage();
   return (
     <VerticalTimelineElement
       contentStyle={{
@@ -29,7 +31,7 @@ const ExperienceCart = ({
       contentArrowStyle={{
         borderRight: "7px solid rgba(255, 255, 255, 0.1)",
       }}
-      date={experience.date}
+      date={t(experience.date)} // Translate the date
       dateClassName="text-white font-semibold text-sm md:text-base"
       iconStyle={{
         background: experience.iconBg,
@@ -39,7 +41,7 @@ const ExperienceCart = ({
         <div className="flex items-center justify-center w-full h-full">
           <img
             src={experience.path}
-            alt={experience.title}
+            alt={t(experience.title)}
             className="w-8 h-8 md:w-10 md:h-10 object-contain"
           />
         </div>
@@ -52,7 +54,7 @@ const ExperienceCart = ({
         viewport={{ once: true }}
       >
         <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-          {experience.title}
+          {t(experience.title)}
         </h3>
 
         <ul className="mt-4 space-y-2">
@@ -62,7 +64,7 @@ const ExperienceCart = ({
               className="text-gray-300 text-sm md:text-base leading-relaxed flex items-start"
             >
               <span className="text-blue-400 mr-2">•</span>
-              {point}
+              {t(point)} {/* Translate each point */}
             </li>
           ))}
         </ul>
@@ -72,6 +74,8 @@ const ExperienceCart = ({
 };
 
 const Experience = () => {
+  const { t } = useLanguage(); // Add this hook
+
   return (
     <section className="py-16 px-4 md:py-24 md:px-6 lg:px-8 max-w-6xl mx-auto">
       <motion.div
@@ -83,8 +87,8 @@ const Experience = () => {
       >
         {/* Header Section */}
         <ReusableTitle
-          title=" What I've done so far"
-          description="Work Experience"
+          title={t("experience.title")} // Translate title
+          description={t("experience.workExperience")} // Translate description
         />
 
         {/* Timeline Section */}

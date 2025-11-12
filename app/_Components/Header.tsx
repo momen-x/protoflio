@@ -6,19 +6,21 @@ import { FcAbout } from "react-icons/fc";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import logo from "@/app/favicon.ico";
-
-const pages = [
-  { icon: IoHome, label: "Home", path: "/" },
-  { icon: MdWork, label: "Work", path: "#work" },
-  { icon: FcAbout, label: "About", path: "#about" },
-  { icon: FcAbout, label: "Contact", path: "#contact" },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 const UserHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
+
+  const { language, setLanguage, t } = useLanguage();
+  const pages = [
+    { icon: IoHome, label: t("nav.home"), path: "/" },
+    { icon: MdWork, label: t("nav.about"), path: "#work" },
+    { icon: FcAbout, label: t("nav.work"), path: "#about" },
+    { icon: FcAbout, label: t("nav.contact"), path: "#contact" },
+  ];
 
   // Listen for hash changes
   useEffect(() => {
@@ -100,10 +102,10 @@ const UserHeader = () => {
             </div>
             <div className="flex flex-col">
               <h1 className="text-2xl font-bold bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Protoflio
+                {t("header.protoflio")}
               </h1>
               <span className="text-xs text-white/80 -mt-1">
-                Front End Developer
+                {t("header.frontend")}
               </span>
             </div>
           </div>
@@ -141,6 +143,14 @@ const UserHeader = () => {
               );
             })}
           </nav>
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value as any)}
+            className="bg-gray-800 text-white px-3 py-1 rounded"
+          >
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
         </div>
 
         {/* Right side actions */}

@@ -1,8 +1,9 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import UserHeader from "./_Components/Header";
 import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
+import { LanguageProvider } from "@/app/context/LanguageContext";
+import UserHeader from "./_Components/Header";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   description: "Front End Developer Portfolio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -39,10 +40,10 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable}`}
     >
       <body className="backgroundContainer font-sans">
-        <div className="content">
+        <LanguageProvider>
           <UserHeader />
           {children}
-        </div>
+        </LanguageProvider>
       </body>
     </html>
   );

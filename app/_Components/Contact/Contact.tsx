@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import GlobeCanvas from "@/app/_Components/GlobeCanvas";
 import "./Contact.css";
 import { TAddUser } from "@/app/validation/addUser";
 import axios from "axios";
 import { domin } from "@/app/lib/domin";
+import GlobeCanvas from "../GlobeCanvas";
+import { useLanguage } from "@/app/context/LanguageContext"; // Add this import
 
 const Contact = () => {
   const [form, setForm] = useState<TAddUser>({
@@ -14,6 +15,7 @@ const Contact = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage(); // Add this hook
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,15 +27,9 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // setTimeout(() => {
-    //   setLoading(false);
-    //   alert("Thank you for your message! I'll get back to you soon.");
-    //   setForm({ name: "", email: "", message: "" });
-    // }, 2000);
 
     try {
       await axios.post(`${domin}/api/momen_protoflio/users`, form);
-      // const data = response.data;
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
       console.log("err becaue i dont know", error);
@@ -53,22 +49,19 @@ const Contact = () => {
           className="text-center mb-12"
         >
           <p className="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-2">
-            Get in touch
+            {t("contact.keepInTouch")} {/* Translate */}
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Contact
+            {t("contact.contact")} {/* Translate */}
           </h2>
           <div className="w-24 h-1 bg-linear-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
           <p className="text-gray-300 text-lg mt-6 max-w-2xl mx-auto">
-            Ready to bring your ideas to life? Let&apos;s discuss your project
-            and create something amazing together.
+            {t("contact.opinion")} {/* Translate */}
           </p>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
-          {" "}
-          {/* FIXED: items-stretch */}
-          {/* Globe Section - FIXED */}
+          {/* Globe Section */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -76,11 +69,11 @@ const Contact = () => {
             viewport={{ once: true }}
             className="flex-1 w-full h-full min-h-[450px] lg:min-h-[550px] rounded-2xl overflow-hidden border border-gray-700/50 bg-blue-500/5"
           >
-            {/* Ensure parent has height */}
             <div className="w-full h-full">
               <GlobeCanvas />
             </div>
           </motion.div>
+
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -93,7 +86,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-3">
                   <label className="block text-white font-semibold text-base">
-                    Your Name *
+                    {t("contact.name")} * {/* Translate */}
                   </label>
                   <input
                     type="text"
@@ -101,14 +94,14 @@ const Contact = () => {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    placeholder="What's your name?"
+                    placeholder={t("contact.namePlaceholder")}
                     className="w-full bg-gray-800/70 border-2 border-gray-600/50 rounded-xl py-4 px-4 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 text-base"
                   />
                 </div>
 
                 <div className="space-y-3">
                   <label className="block text-white font-semibold text-base">
-                    Your Email *
+                    {t("contact.yourEmail")} * {/* Translate */}
                   </label>
                   <input
                     type="email"
@@ -116,14 +109,14 @@ const Contact = () => {
                     value={form.email}
                     onChange={handleChange}
                     required
-                    placeholder="What's your email address?"
+                    placeholder={t("contact.emailPlaceholder")}
                     className="w-full bg-gray-800/70 border-2 border-gray-600/50 rounded-xl py-4 px-4 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 text-base"
                   />
                 </div>
 
                 <div className="space-y-3">
                   <label className="block text-white font-semibold text-base">
-                    Your Message *
+                    {t("contact.message")} * {/* Translate */}
                   </label>
                   <textarea
                     rows={6}
@@ -131,10 +124,12 @@ const Contact = () => {
                     value={form.message}
                     onChange={handleChange}
                     required
-                    placeholder="Tell me ..."
+                    placeholder={t("contact.messagePlaceholder")}
                     className="w-full bg-gray-800/70 border-2 border-gray-600/50 rounded-xl py-4 px-4 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 resize-none transition-all duration-200 text-base min-h-[150px]"
                   />
                 </div>
+
+                {/* WhatsApp Section */}
                 <div className="space-y-3 mt-6">
                   <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:border-green-500/30 transition-all duration-300">
                     <div className="flex items-center gap-3 mb-3">
@@ -148,9 +143,11 @@ const Contact = () => {
                         </svg>
                       </div>
                       <div>
-                        <h4 className="text-white font-semibold">WhatsApp</h4>
+                        <h4 className="text-white font-semibold">
+                          {t("contact.whatsapp")} {/* Translate */}
+                        </h4>
                         <p className="text-gray-400 text-sm">
-                          Direct messaging
+                          {t("contact.whatsappMessage")} {/* Translate */}
                         </p>
                       </div>
                     </div>
@@ -164,7 +161,7 @@ const Contact = () => {
                         }
                         className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm font-medium transition-colors duration-200"
                       >
-                        Message
+                        {t("contact.whatsappSendMessage")} {/* Translate */}
                       </button>
                     </div>
                   </div>
@@ -178,10 +175,10 @@ const Contact = () => {
                   {loading ? (
                     <div className="flex items-center justify-center gap-3">
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
+                      {t("contact.sending")} {/* Translate */}
                     </div>
                   ) : (
-                    "Send Message"
+                    t("contact.sendMessage") /* Translate */
                   )}
                 </button>
               </form>
@@ -210,7 +207,9 @@ const Contact = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-white font-medium text-sm">Email</p>
+                <p className="text-white font-medium text-sm">
+                  {t("contact.email")} {/* Translate */}
+                </p>
                 <p className="text-gray-400 text-xs">mmm.isam.99@gmail.com</p>
               </div>
 
@@ -230,7 +229,9 @@ const Contact = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-white font-medium text-sm">Phone</p>
+                <p className="text-white font-medium text-sm">
+                  {t("contact.phone")} {/* Translate */}
+                </p>
                 <p className="text-gray-400 text-xs">+(972) 587-322</p>
               </div>
             </motion.div>
