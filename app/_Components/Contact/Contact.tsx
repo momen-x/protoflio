@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import "./Contact.css";
+// import "./Contact.css";
 import { TAddUser } from "@/app/validation/addUser";
 import axios from "axios";
 import { domin } from "@/app/lib/domin";

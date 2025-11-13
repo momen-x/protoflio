@@ -4,7 +4,7 @@ import Contact from "./_Components/Contact/Contact";
 import Experience from "./_Components/Experience";
 import Feedback from "./_Components/Feedback";
 import HeroSection from "./_Components/Hero";
-import Stars from "./_Components/Stars";
+import StarsCanvas from "./_Components/Stars";
 import Tech from "./_Components/Tech";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       <div id="contact">
         <Contact />
       </div>
-      <Stars />
+      <StarsCanvas  />
     </div>
   );
 }
