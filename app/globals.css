@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 body {
   font-family: var(--font-inter);
 }
@@ -22,7 +21,6 @@ body {
     --foreground: #ededed;
   }
 }
-
 
 /* Fixed background styles */
 .backgroundContainer {
@@ -51,6 +49,60 @@ body {
   position: relative;
   z-index: 1;
 }
-Link{
+Link {
   cursor: pointer;
+}
+
+/* Add to your globals.css */
+
+/* Arabic font family */
+.font-arabic {
+  font-family: var(--font-cairo), var(--font-tajawal), system-ui, -apple-system,
+    sans-serif;
+}
+
+/* RTL-specific adjustments */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* Fix margins and paddings for RTL */
+[dir="rtl"] .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* Flip transforms for RTL */
+[dir="rtl"] .translate-x-1\/2 {
+  transform: translate(-50%, var(--tw-translate-y));
+}
+
+[dir="rtl"] .-translate-x-1\/2 {
+  transform: translate(50%, var(--tw-translate-y));
+}
+
+/* Better centering for RTL compatibility */
+.center-absolute {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+[dir="rtl"] .center-absolute {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
 }

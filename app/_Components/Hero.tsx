@@ -25,7 +25,7 @@ const HeroSection = () => {
             </span>
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-200 max-w-2xl">
-       {t("hero.about")} 
+            {t("hero.about")}
           </p>
 
           {/* CTA buttons with proper colors */}
@@ -54,10 +54,10 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0 h-2/3">
         <ComputerCanvas />
       </div>
-      {/* Scroll Indicator - Fixed and centered */}
-      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center">
+      {/* Scroll Indicator - Fixed and centered for both LTR and RTL */}
+      <div className="absolute bottom-1 left-0 right-0 w-full flex justify-center items-center">
         <Link href="#about">
-          <div className=" w-[35px] h-14 rounded-3xl border-4 border-white/40 flex justify-center items-start p-2 backdrop-blur-sm bg-white/10">
+          <div className="w-[35px] h-14 rounded-3xl border-4 border-white/40 flex justify-center items-start p-2 backdrop-blur-sm bg-white/10">
             <motion.div
               animate={{ y: [0, 20, 0] }}
               transition={{

@@ -1,9 +1,16 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
+import {
+  Inter,
+  JetBrains_Mono,
+  Orbitron,
+  Cairo,
+  Tajawal,
+} from "next/font/google";
 import { LanguageProvider } from "@/app/context/LanguageContext";
 import UserHeader from "./_Components/Header";
+import LanguageWrapper from "./_Components/LanguageWrapper";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -24,6 +31,21 @@ export const orbitron = Orbitron({
   weight: ["400", "500", "700", "900"],
 });
 
+// Arabic fonts
+export const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  variable: "--font-cairo",
+  weight: ["400", "500", "600", "700", "900"],
+});
+
+export const tajawal = Tajawal({
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  variable: "--font-tajawal",
+  weight: ["400", "500", "700", "900"],
+});
+
 export const metadata: Metadata = {
   title: "Portfolio",
   description: "Front End Developer Portfolio",
@@ -37,12 +59,14 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${cairo.variable} ${tajawal.variable}`}
     >
       <body className="backgroundContainer font-sans">
         <LanguageProvider>
-          <UserHeader />
-          {children}
+          <LanguageWrapper>
+            <UserHeader />
+            {children}
+          </LanguageWrapper>
         </LanguageProvider>
       </body>
     </html>

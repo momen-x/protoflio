@@ -65,11 +65,45 @@ const About: React.FC = () => {
           title={t("about.intro")}
         />
 
-        {/* Description Section */}
-        <motion.div className="max-w-3xl mx-auto text-center">
-          <motion.p className="text-lg md:text-xl text-gray-300 leading-relaxed md:leading-loose bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30">
-            {t("about.story")}
-          </motion.p>
+        {/* Description Section - Enhanced Design */}
+        <motion.div
+          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative group">
+            {/* Animated gradient border effect */}
+            <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+
+            {/* Main content card */}
+            <div className="relative bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 backdrop-blur-xl rounded-3xl p-8 md:p-10 border border-gray-700/50 shadow-2xl">
+              {/* Decorative quote icon */}
+              <div className="absolute top-6 left-6 text-blue-500/20 text-6xl font-serif leading-none select-none mb-6">
+                {"\""}
+              </div>
+
+              {/* Story text */}
+              <motion.p
+                className="text-base md:text-lg text-gray-200 leading-relaxed md:leading-loose relative z-10"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                {t("about.story")}
+              </motion.p>
+
+              {/* Decorative elements */}
+              <div className="absolute bottom-6 right-6 w-16 h-16 bg-linear-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl"></div>
+              <div className="absolute top-1/2 right-8 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+              <div className="absolute top-1/3 left-8 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></div>
+
+              {/* Bottom accent line */}
+              <div className="mt-6 h-1 w-24 mx-auto bg-linear-to-r from-transparent via-blue-500 to-transparent rounded-full"></div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Services Grid */}
