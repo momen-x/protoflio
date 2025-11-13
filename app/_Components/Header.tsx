@@ -17,8 +17,8 @@ const UserHeader = () => {
   const { language, setLanguage, t } = useLanguage();
   const pages = [
     { icon: IoHome, label: t("nav.home"), path: "/" },
-    { icon: MdWork, label: t("nav.about"), path: "#work" },
-    { icon: FcAbout, label: t("nav.work"), path: "#about" },
+    { icon: MdWork, label: t("nav.work"), path: "#work" },
+    { icon: FcAbout, label: t("nav.about"), path: "#about" },
     { icon: FcAbout, label: t("nav.contact"), path: "#contact" },
   ];
 
@@ -143,33 +143,57 @@ const UserHeader = () => {
               );
             })}
           </nav>
-<div className="relative group">
-  <select
-    value={language}
-    onChange={(e) => setLanguage(e.target.value as any)}
-    className="appearance-none bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-md border border-gray-600/30 text-white pl-11 pr-10 py-2.5 rounded-2xl focus:outline-none focus:border-blue-400/60 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 cursor-pointer hover:bg-gradient-to-br hover:from-gray-700/60 hover:to-gray-800/60 hover:border-gray-500/40 hover:shadow-lg hover:shadow-blue-500/10 font-medium text-sm min-w-[140px]"
-  >
-    <option value="en" className="bg-gray-900 text-white">🇬🇧 English</option>
-    <option value="ar" className="bg-gray-900 text-white">🇵🇸 العربية</option>
-  </select>
-  
-  {/* Animated Globe Icon */}
-  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
-    <svg className="w-4.5 h-4.5 text-blue-400 drop-shadow-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  </div>
-  
-  {/* Animated Dropdown Arrow */}
-  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-300 group-hover:translate-y-0.5">
-    <svg className="w-4 h-4 text-gray-400 group-hover:text-blue-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  </div>
-  
-  {/* Subtle glow effect on hover */}
-  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-blue-500/5 transition-all duration-500 pointer-events-none" />
-</div>
+          <div className="relative group">
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value as any)}
+              className="appearance-none bg-linear-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-md border border-gray-600/40 text-white pl-12 pr-12 py-3 rounded-2xl focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all duration-300 cursor-pointer hover:bg-linear-to-br hover:from-gray-700/80 hover:to-gray-800/80 hover:border-gray-500/60 hover:shadow-2xl hover:shadow-blue-500/20 font-medium text-sm min-w-40 shadow-lg shadow-black/20"
+            >
+              <option value="en" className="bg-gray-800 text-white py-2 rounded-full">
+                🇬🇧 English
+              </option>
+              <option value="ar" className="bg-gray-800 text-white py-2 rounded-full">
+                🇵🇸 العربية
+              </option>
+            </select>
+
+            {/* Globe Icon */}
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none transition-all duration-300 group-hover:scale-110 group-hover:text-blue-300">
+              <svg
+                className="w-5 h-5 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+
+            {/* Dropdown Arrow */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-300 group-hover:translate-y-0.5">
+              <svg
+                className="w-4 h-4 text-gray-300 group-hover:text-blue-400 transition-colors duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+
+            {/* Enhanced glow effect */}
+            <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/5 group-hover:to-cyan-500/10 transition-all duration-500 pointer-events-none -z-10" />
+          </div>
         </div>
 
         {/* Right side actions */}

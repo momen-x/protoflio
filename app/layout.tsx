@@ -59,7 +59,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${cairo.variable} ${tajawal.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${tajawal.variable} ${cairo.variable} `}
     >
       <body className="backgroundContainer font-sans">
         <LanguageProvider>

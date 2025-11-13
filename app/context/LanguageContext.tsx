@@ -8,6 +8,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  isTransitioning: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -150,7 +151,7 @@ const translations = {
     "about.intro": "مقدمة",
     "about.overview": "نظرة عامة",
     "about.story":
-  "أنا مطور واجهات أمامية شغوف بإنشاء تجارب ويب استثنائية. بدأت رحلتي بتعلم Java في الجامعة، لكنها توقفت بسبب الحرب على غزة. عدت بتركيز متجدد، واستكشفت تقنيات متعددة—C, C++, PHP, Python—قبل أن أجد شغفي الحقيقي في تطوير الواجهات الأمامية باستخدام HTML, CSS, و JavaScript. أتقنت الأدوات الحديثة بما في ذلك React, Next.js, Tailwind CSS, و Bootstrap، وبنيت مشاريع واقعية تحل مشاكل عملية. اليوم، أتخصص في تطوير المواقع المتكاملة، وأنشئ تطبيقات متجاوبة تركز على تجربة المستخدم بينما أتعلم باستمرار وأتكيف مع التقنيات الناشئة.",
+      "أنا مطور واجهات أمامية شغوف بإنشاء تجارب ويب استثنائية. بدأت رحلتي بتعلم Java في الجامعة، لكنها توقفت بسبب الحرب على غزة. عدت بتركيز متجدد، واستكشفت تقنيات متعددة—C, C++, PHP, Python—قبل أن أجد شغفي الحقيقي في تطوير الواجهات الأمامية باستخدام HTML, CSS, و JavaScript. أتقنت الأدوات الحديثة بما في ذلك React, Next.js, Tailwind CSS, و Bootstrap، وبنيت مشاريع واقعية تحل مشاكل عملية. اليوم، أتخصص في تطوير المواقع المتكاملة، وأنشئ تطبيقات متجاوبة تركز على تجربة المستخدم بينما أتعلم باستمرار وأتكيف مع التقنيات الناشئة.",
     "about.whatdo": "ماذا أستطيع أن أفعل",
     "about.services": "هنا بعض من الخدمات التي أستطيع تقديمها",
     "about.serviceTitle1": "مطور واجهات أمامية",
@@ -257,6 +258,17 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("en");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleSetLanguage = (lang: Language) => {
+    if (lang !== language) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setLanguage(lang);
+        setIsTransitioning(false);
+      }, 300); // Match this duration with your animation duration
+    }
+  };
 
   const t = (key: string): string => {
     return (
@@ -266,7 +278,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider
+      value={{
+        language,
+        setLanguage: handleSetLanguage,
+        t,
+        isTransitioning: isTransitioning,
+      }}
+    >
       {children}
     </LanguageContext.Provider>
   );

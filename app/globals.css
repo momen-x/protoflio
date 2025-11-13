@@ -57,7 +57,7 @@ Link {
 
 /* Arabic font family */
 .font-arabic {
-  font-family: var(--font-cairo), var(--font-tajawal), system-ui, -apple-system,
+  font-family: var(--font-cairo), var(--font-tajawal),var(--) system-ui, -apple-system,
     sans-serif;
 }
 
@@ -105,4 +105,13 @@ Link {
   left: auto;
   right: 50%;
   transform: translateX(50%);
+}
+/* globals.css */
+.smooth-language-transition {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.language-changing {
+  opacity: 0.7;
+  pointer-events: none;
 }

@@ -2,6 +2,7 @@
 "use client";
 import { useLanguage } from "../context/LanguageContext";
 import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function LanguageWrapper({
   children,
@@ -25,5 +26,20 @@ export default function LanguageWrapper({
     }
   }, [language]);
 
-  return <>{children}</>;
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={language}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          duration: 0.2,
+          ease: "easeInOut",
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
 }
